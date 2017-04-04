@@ -25,9 +25,13 @@ final class Qore
 			try
 			{
 				$config = self::config('database');
-				$dsn = $config['engine'].':host='.$config['hostname'].';port='.$config['port'].';dbname='.$config['database'];
+				self::$__connection = new \Pixie\Connection($config['driver'],$config);
+				/*
+				$dsn = $config['driver'].':host='.$config['host'].';port='.$config['port'].';dbname='.$config['database'];
 				self::$__connection = new PDO($dsn, $config['username'], $config['password']);
+				self::$__connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				self::$__connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+				*/
 			} 
 			catch (Exception $e)
 			{
@@ -87,11 +91,16 @@ final class Qore
 		$moduleConfig = self::config('modules');
 		foreach(self::$__modules as $module => $status)
 		{
+			if($status == self::MODULE_STATUS_DISABLED)
+			{
+				continue;
+			}
+			
 			if($moduleConfig['disable_dev'] && $status == self::MODULE_STATUS_DEV)
 			{
 				continue;
 			}
-			if($moduleConfig['disable_all'] && stripos($module,'Qore_') !== 0)
+			if($moduleConfig['disable_all'] && stripos($module,'Qore_Framework') !== 0)
 			{
 				continue;
 			}
@@ -125,10 +134,5 @@ final class Qore
 		$statement->bindParam(':name',$module);
 		$statement->execute();
 		return $statement->fetchColumn();
-	}
-	
-	public static function tablename($tablename)
-	{
-		return self::config('database','table_prefix').$tablename;
 	}
 }

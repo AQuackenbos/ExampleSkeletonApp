@@ -17,7 +17,7 @@ $_DEFAULTS = array(
 	),
 	'database'	=> array(
 		//DB Host
-		'hostname'		=>	'localhost',
+		'host'			=>	'localhost',
 		//DB Port
 		'port'			=>	3306,
 		//DB User
@@ -27,9 +27,13 @@ $_DEFAULTS = array(
 		//DB Name
 		'database'		=>	'database',
 		//DB Table Prefix
-		'table_prefix'	=>	'',
-		//DB Engine: [ mysql ]
-		'engine'		=> 'mysql'
+		'prefix'		=>	'',
+		//DB Engine: [ mysql | pgsql | sqlite]
+		'driver'		=> 'mysql',
+		//DB Engine Options
+		'options'		=> array(
+			PDO::ATTR_DEFAULT_FETCH_MODE =>	PDO::FETCH_ASSOC
+		)
 	)
 );
 

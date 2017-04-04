@@ -9,8 +9,6 @@ class Installer extends \Qore\Framework\Utility\UtilityAbstract
 	protected static $_active;
 	protected static $_install;
 	
-	protected final $__insert = 'INSERT INTO :table (`name`,`installed_version`) VALUES (:name, :version) ON DUPLICATE KEY UPDATE `installed_version` = :version2';
-	
 	/**
 	 * Installs the module as defined
 	 */
@@ -63,21 +61,17 @@ class Installer extends \Qore\Framework\Utility\UtilityAbstract
 				{
 					foreach($install['database'] as $table => $query)
 					{
-						$tableName = Qore::tablename($table);
-						$statement = Qore::connection()->prepare($query);
-						$statement->bindParam(':table',$tableName);
-						$statement->execute();
+						$statement = Qore::connection()->query($query,
+							array('table' => Qore::config('database','prefix').$table)
+						);
 					}
 				}
 			}
 		}
 		
-		$updateVersion = Qore::connection()->prepare(self::$__insert);
-		$updateVersion->bindParam(':table',Qore::tablename('modules'));
-		$updateVersion->bindParam(':name',static::$_name);
-		$updateVersion->bindParam(':version',static::$_version);
-		$updateVersion->bindParam(':version2',static::$_version);
-		$updateVersion->execute();
+		Qore::connection()->table('modules')
+			->onDuplicateKeyUpdate->(array('version' => static::$_version))
+			->insert(array('name' => static::$_name, 'version' => static::$_version));
 	}
 	
 	/**
