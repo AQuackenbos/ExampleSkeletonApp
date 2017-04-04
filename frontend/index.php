@@ -18,7 +18,7 @@ if(!file_exists($configPath))
 }
 
 require_once '../vendor/autoload.php';
-require_once '../lib/autoload.php';
+require_once '../Qore.php';
 require_once $defaultConfig;
 require_once $configPath;
 
