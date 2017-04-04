@@ -1,2 +1,6 @@
 # Private Config Files
 config.php
+
+# Heroku
+vendor/
+.env
