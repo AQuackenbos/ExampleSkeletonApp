@@ -1,4 +1,7 @@
 {
+  "autoload" : {
+    "psr-0" : {"\\" : "lib/"}
+  },
   "require" : {
     "usmanhalalit/pixie": "^2.0"
   },
