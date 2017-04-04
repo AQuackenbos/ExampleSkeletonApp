@@ -1,5 +1,6 @@
 # Private Config Files
-config.php
+## Not hidden in heroku
+## config.php
 
 # Heroku
 vendor/

@@ -6,7 +6,7 @@ $addlIncludePaths = array(
 );
 
 set_include_path(get_include_path() . PS . implode(PS,$addlIncludePaths));
-
+/*
 spl_autoload_register(function($className){
 	$className = ltrim($className,'\\');
 	$fileName = '';
@@ -21,3 +21,4 @@ spl_autoload_register(function($className){
 
     require $fileName;
 });
+*/
