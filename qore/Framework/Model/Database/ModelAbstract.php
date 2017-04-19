@@ -10,9 +10,14 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 	
 	public function __construct()
 	{
+		$this->_validate();
+	}
+	
+	protected function _validate()
+	{
 		if(!$this->_table || !$this->_idField || !is_array($this->databaseFields()))
 		{
-			throw new Exception('Database Model '.get_class($this).' is missing required config information!');
+			throw new \Qore\Framework\Exception\Database('Database Model '.get_class($this).' is missing required config information!');
 		}
 	}
 	
@@ -23,10 +28,7 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 	
 	public function save()
 	{
-		if(!$this->_table || !$this->_idField || !is_array($this->databaseFields()))
-		{
-			throw new Exception('Database Model '.get_class($this).' is missing required config information!');
-		}
+		$this->_validate();
 		
 		$modelData = array();
 		
@@ -47,10 +49,7 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 	
 	public function load($id)
 	{
-		if(!$this->_table || !$this->_idField || !is_array($this->databaseFields()))
-		{
-			throw new Exception('Database Model '.get_class($this).' is missing required config information!');
-		}
+		$this->_validate();
 		
 		$row = Qore::connection()->table($this->_table)->find($id,$this->_idField);
 		

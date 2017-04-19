@@ -3,17 +3,16 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('PS', PATH_SEPARATOR);
 
-define('FS_ROOT',realpath(__DIR__ . '/..'));
+define('FS_ROOT',realpath(__DIR__ . DS . '..'));
 
-$configPath = '../config.php';
-$defaultConfig = '../config.defaults.php';
+$defaultConfig = FS_ROOT . DS .'config.defaults.php';
+$configPath = FS_ROOT . DS . 'config.php';
 
 ini_set('display_errors', 1);
 
 if(!file_exists($configPath))
 {
-	//@todo
-	echo 'Qore is missing a required configuration file.';
+	throw new \Qore\Framework\Exception\Fatal('Missing the Qore configuration file.');
 	exit;
 }
 

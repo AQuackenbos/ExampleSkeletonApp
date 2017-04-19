@@ -4,7 +4,7 @@ $_DEFAULTS = array(
 	'modules'	=> array(
 		//Disable Modules configured as "Dev Mode"
 		'disable_dev'	=>	false,
-		//Disable any non-Qore Module
+		//Disable any non-Qore Modules
 		'disable_all'	=>	false
 	),
 	'frontend'	=> array(

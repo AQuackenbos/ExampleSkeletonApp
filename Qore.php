@@ -13,9 +13,20 @@ final class Qore
 	const MODULE_STATUS_ENABLED		=	1;
 	const MODULE_STATUS_DEV			=	2;
 	
+	/** Logging Constants **/
+	const EOL						= "\n";
+	const LOG_PATH					= 'logs'
+	const LOG_EXTENSION				= '.log';
+	
+	
 	public static function version()
 	{
 		return self::__version;
+	}
+	
+	public static function log($message, $file)
+	{
+		file_put_contents($message . self::EOL, FS_ROOT . DS . self::LOG_PATH . DS . $file . self::LOG_EXTENSION, FILE_APPEND);
 	}
 	
 	public static function connection()
@@ -26,16 +37,10 @@ final class Qore
 			{
 				$config = self::config('database');
 				self::$__connection = new \Pixie\Connection($config['driver'],$config);
-				/*
-				$dsn = $config['driver'].':host='.$config['host'].';port='.$config['port'].';dbname='.$config['database'];
-				self::$__connection = new PDO($dsn, $config['username'], $config['password']);
-				self::$__connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				self::$__connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-				*/
 			} 
 			catch (Exception $e)
 			{
-				echo 'Could not connect to database!';
+				throw new \Qore\Framework\Exception\Database('Could not connect to configured database.');
 				exit;
 			}
 		}
@@ -49,7 +54,7 @@ final class Qore
 			$_SESSION[$key] = $value;
 		}
 		
-		return $_SESSION[$key]
+		return $_SESSION[$key];
 	}
 	
 	public static function run()
@@ -130,9 +135,20 @@ final class Qore
 	
 	public static function moduleVersion($module)
 	{
-		$statement = self::connection()->prepare('SELECT `installed_version` FROM '.self::tablename('modules').' WHERE `name` = :name');
-		$statement->bindParam(':name',$module);
-		$statement->execute();
-		return $statement->fetchColumn();
+		try 
+		{
+			$statement = self::connection()->prepare('SELECT `installed_version` FROM '.self::tablename('modules').' WHERE `name` = :name');
+			$statement->bindParam(':name',$module);
+			$statement->execute();
+			return $statement->fetchColumn();
+		} 
+		catch (\Qore\Framework\Exception\Database $e)
+		{
+			return 0;
+		}
+		catch (\Exception $e)
+		{
+			return 0;
+		}
 	}
 }
