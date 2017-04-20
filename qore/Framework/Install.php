@@ -12,27 +12,11 @@ final class Install extends \Qore\Framework\Utility\Installer
 		1	=>	[
 			'filesystem'	=>	[],
 			'database'		=>	[
-				'create'	=>	[
-					'modules'	=>	[
-						'columns' =>	[
-							'name'	=> [
-								'type'	=>	'varchar',
-								'size'	=>	'100',
-								'null'	=>	false
-							],
-							'installed_version'	=>	[
-								'type'	=>	'int',
-								'size'	=>	'5',
-								'null'	=>	false
-							]
-						],
-						'keys'	=>	[
-							'primary'	=>	[
-								'name'
-							]
-						]
-					]
-				]
+				'modules'	=>	
+					'CREATE TABLE IF NOT EXISTS `?` ('.
+						'`name` VARCHAR(100) CONSTRAINT pk_name PRIMARY KEY,'.
+						'`version` INT(5) NOT NULL,'.
+					')'
 			]
 		]
 	];

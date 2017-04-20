@@ -60,26 +60,17 @@ class Installer extends UtilityAbstract
 				/** consider wrapping in wider try block and encapsulating each install sub-method **/
 				if(array_key_exists('database',$install) && is_array($install['database']))
 				{
-					foreach($install['database'] as $command => $data)
+					foreach($install['database'] as $table => $query)
 					{
-						switch($command)
+						try
 						{
-							case 'create':
-								foreach($data as $table => $instructions)
-								{
-									try
-									{
-										$this->_createTable($table, $instructions);
-									}
-									catch (\Exception $e)
-									{
-										throw new \Qore\Framework\Exception\Installer(
-											'['.self::name().'] Error installing SQL for Version '.$version.', Table "'.$table.'"'.Qore::EOL.$e->getMessage()
-										);
-									}
-								}
-							default:
-								throw new \Qore\Framework\Exception\Installer('['.self::name().'] Unsupported database command requested: '.$command);
+							Qore::connection()->query($query, [Qore::connection()->addTablePrefix($table)]);
+						}
+						catch (\Exception $e)
+						{
+							throw new \Qore\Framework\Exception\Installer(
+								'['.self::name().'] Error installing SQL for Version '.$version.', Table "'.$table.'": '.Qore::EOL.$e->getMessage()
+							);
 						}
 					}
 				}
@@ -94,14 +85,6 @@ class Installer extends UtilityAbstract
 		Qore::connection()->table('modules')
 			->onDuplicateKeyUpdate->(['version' => static::$_version])
 			->insert(['name' => static::$_name, 'version' => static::$_version]);
-	}
-	
-	protected final function _createTable($tablename, $instructions)
-	{
-			$statement = Qore::connection()->query(
-				$query,
-				['table' => Qore::config('database','prefix').$table]
-			);
 	}
 	
 	/**

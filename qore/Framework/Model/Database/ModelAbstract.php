@@ -30,7 +30,7 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 	{
 		$this->_validate();
 		
-		$modelData = array();
+		$modelData = [];
 		
 		foreach($this->databaseFields() as $field)
 		{

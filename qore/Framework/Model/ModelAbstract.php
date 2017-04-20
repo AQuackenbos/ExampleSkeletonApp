@@ -4,7 +4,7 @@ namespace Qore\Framework\Model;
 
 abstract class ModelAbstract
 {
-	protected $_data = array();
+	protected $_data = [];
 	
 	public function __get($key)
 	{
