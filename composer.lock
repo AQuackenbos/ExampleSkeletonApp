@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dfa6bcff458cfee3f34f130f4b9228c",
+    "content-hash": "557e7b63f97495212ff573044c360426",
     "packages": [
         {
             "name": "usmanhalalit/pixie",
-            "version": "2.0.0",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/usmanhalalit/pixie.git",
-                "reference": "5820ef4f62c7be697767fd84830b7ad6fc057375"
+                "reference": "35378d7acff314bf20fbd3dfa8006b1a036ffc02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/usmanhalalit/pixie/zipball/5820ef4f62c7be697767fd84830b7ad6fc057375",
-                "reference": "5820ef4f62c7be697767fd84830b7ad6fc057375",
+                "url": "https://api.github.com/repos/usmanhalalit/pixie/zipball/35378d7acff314bf20fbd3dfa8006b1a036ffc02",
+                "reference": "35378d7acff314bf20fbd3dfa8006b1a036ffc02",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 "sql",
                 "sqlite"
             ],
-            "time": "2016-04-08T10:58:01+00:00"
+            "time": "2016-04-12 11:50:49"
         },
         {
             "name": "usmanhalalit/viocon",
@@ -158,7 +158,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "usmanhalalit/pixie": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
