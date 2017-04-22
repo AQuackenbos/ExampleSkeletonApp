@@ -4,8 +4,8 @@ final class Qore
 {
 	/** Data **/
 	private static $__version		= '0.1-development';
-	private static $__config		= array();
-	private static $__modules		= array();
+	private static $__config		= [];
+	private static $__modules		= [];
 	private static $__connection	= null;
 	
 	/** Constants **/
@@ -40,7 +40,7 @@ final class Qore
 			} 
 			catch (Exception $e)
 			{
-				throw new \Qore\Framework\Exception\Database('Could not connect to configured database.');
+				throw new \Qore\Framework\Exception\Fatal('Could not connect to configured database.');
 				exit;
 			}
 		}
@@ -59,10 +59,14 @@ final class Qore
 	
 	public static function run()
 	{
+		if(self::moduleVersion('Qore_Framework') === 0)
+		{
+			throw new \Qore\Framework\Exception\Fatal('Qore Framework has not been properly installed.');
+			exit;
+		}
+		
 		session_start();
-		
 		self::loadModules();
-		
 		self::serveRoute();
 	}
 	
@@ -74,6 +78,11 @@ final class Qore
 	public static function serveRoute($route = false)
 	{
 		
+	}
+	
+	public static function loadModules()
+	{
+		$modules = self::$__modules;
 	}
 	
 	public static function install($module)
@@ -88,29 +97,6 @@ final class Qore
 		{
 			echo 'Error installing module: '.$module."\n";
 			return false;
-		}
-	}
-	
-	public static function loadModules()
-	{
-		$moduleConfig = self::config('modules');
-		foreach(self::$__modules as $module => $status)
-		{
-			if($status == self::MODULE_STATUS_DISABLED)
-			{
-				continue;
-			}
-			
-			if($moduleConfig['disable_dev'] && $status == self::MODULE_STATUS_DEV)
-			{
-				continue;
-			}
-			if($moduleConfig['disable_all'] && stripos($module,'Qore_Framework') !== 0)
-			{
-				continue;
-			}
-			
-			self::install($module);
 		}
 	}
 	
@@ -137,10 +123,12 @@ final class Qore
 	{
 		try 
 		{
-			$statement = self::connection()->prepare('SELECT `installed_version` FROM '.self::tablename('modules').' WHERE `name` = :name');
-			$statement->bindParam(':name',$module);
-			$statement->execute();
-			return $statement->fetchColumn();
+			$row = self::connection()->table('modules')->find($module,'name');
+			if(!$row)
+			{
+				throw new \Qore\Framework\Exception\Database('Module "'.$module.'" is not installed.');
+			}
+			return $row->version;
 		} 
 		catch (\Qore\Framework\Exception\Database $e)
 		{
