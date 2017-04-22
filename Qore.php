@@ -141,4 +141,9 @@ final class Qore
 			return 0;
 		}
 	}
+	
+	public function response($code)
+	{
+		http_response_code($code);
+	}
 }

@@ -1,5 +1,6 @@
 <?php 
 
+use Qore;
 namespace Qore\Framework\Exception;
 
 class Fatal extends ExceptionAbstract
@@ -8,7 +9,7 @@ class Fatal extends ExceptionAbstract
 	
 	public function __construct($message, $code = 0, Exception $previous = null)
 	{
-		\Qore::response(500);
+		Qore::response(500);
 		return parent::__construct($message, $code, $previous);
 	}
 }
