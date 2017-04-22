@@ -7,6 +7,7 @@ final class Qore
 	private static $__config		= [];
 	private static $__modules		= [];
 	private static $__connection	= null;
+	private static $__qb			= null;
 	
 	/** Constants **/
 	const MODULE_STATUS_DISABLED	=	0;
@@ -31,12 +32,13 @@ final class Qore
 	
 	public static function connection()
 	{
-		if(!(self::$__connection instanceof PDO))
+		if(!(self::$__connection instanceof \Pixie\Connection))
 		{
 			try
 			{
 				$config = self::config('database');
 				self::$__connection = new \Pixie\Connection($config['driver'],$config);
+				self::$__qb = new \Pixie\QueryBuilder\QueryBuilderHandler(self::$__connection);
 			} 
 			catch (Exception $e)
 			{
@@ -44,7 +46,7 @@ final class Qore
 				exit;
 			}
 		}
-		return self::$__connection;
+		return self::$__qb;
 	}
 	
 	public static function session($key, $value = null)
