@@ -39,11 +39,11 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 		
 		if($this->id())
 		{
-			Qore::connection()->table($this->_table)->where($this->_idField, $this->id())->update($modelData);
+			\Qore::connection()->table($this->_table)->where($this->_idField, $this->id())->update($modelData);
 		}
 		else
 		{
-			$this->{$this->_idField} = Qore::connection()->table($this->_table)->insert($modelData);
+			$this->{$this->_idField} = \Qore::connection()->table($this->_table)->insert($modelData);
 		}
 	}
 	
@@ -51,7 +51,7 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 	{
 		$this->_validate();
 		
-		$row = Qore::connection()->table($this->_table)->find($id,$this->_idField);
+		$row = \Qore::connection()->table($this->_table)->find($id,$this->_idField);
 		
 		if($row !== null)
 		{

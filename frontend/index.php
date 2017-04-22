@@ -3,10 +3,10 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('PS', PATH_SEPARATOR);
 
-define('FS_ROOT',realpath(__DIR__ . DS . '..'));
+define('ROOT', realpath(__DIR__ . DS . '..'));
 
-$defaultConfig = FS_ROOT . DS .'config.defaults.php';
-$configPath = FS_ROOT . DS . 'config.php';
+$defaultConfig = ROOT . DS .'config.defaults.php';
+$configPath = ROOT . DS . 'config.php';
 
 ini_set('display_errors', 1);
 
@@ -21,7 +21,7 @@ require_once '../Qore.php';
 require_once $defaultConfig;
 require_once $configPath;
 
-Qore::setConfig(array_merge($_DEFAULTS,$_CONFIG));
-Qore::setModules(array_merge($_QOREMODULES,$_MODULES));
+\Qore::setConfig(array_merge($_DEFAULTS,$_CONFIG));
+\Qore::setModules(array_merge($_QOREMODULES,$_MODULES));
 
-Qore::run();
+\Qore::run();
