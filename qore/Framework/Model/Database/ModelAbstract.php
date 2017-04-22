@@ -18,7 +18,7 @@ abstract class ModelAbstract extends \Qore\Framework\Model\ModelAbstract
 	{
 		if(!$this->_table || !$this->_idField || !is_array($this->databaseFields()))
 		{
-			throw new \Qore\Framework\Exception\Database('Database Model '.get_class($this).' is missing required config information!');
+			throw new Qore\Framework\Exception\Database('Database Model '.get_class($this).' is missing required config information!');
 		}
 	}
 	

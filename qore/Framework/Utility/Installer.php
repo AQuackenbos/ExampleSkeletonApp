@@ -17,17 +17,17 @@ class Installer extends UtilityAbstract
 	{		
 		if(!static::$_active)
 		{
-			throw new \Qore\Framework\Exception\Installer('['.self::name().'] Module disabled!');
+			throw new Qore\Framework\Exception\Installer('['.self::name().'] Module disabled!');
 		}
 	
 		if(!static::$_name || !static::$_version)
 		{
-			throw new \Qore\Framework\Exception\Installer('['.self::name().'] A name and version must be set for a module to install properly.');
+			throw new Qore\Framework\Exception\Installer('['.self::name().'] A name and version must be set for a module to install properly.');
 		}
 		
 		if(!is_int(static::$_version))
 		{
-			throw new \Qore\Framework\Exception\Installer('['.self::name().'] Versions must be integers.');
+			throw new Qore\Framework\Exception\Installer('['.self::name().'] Versions must be integers.');
 		}
 		
 		//Check installed version
@@ -53,7 +53,7 @@ class Installer extends UtilityAbstract
 							case 'touch':
 							case 'rm':
 							default:
-								throw new \Qore\Framework\Exception\Installer('['.self::name().'] Unsupported filesystem command requested: '.$command);
+								throw new Qore\Framework\Exception\Installer('['.self::name().'] Unsupported filesystem command requested: '.$command);
 						}
 					}
 				}
@@ -69,7 +69,7 @@ class Installer extends UtilityAbstract
 						}
 						catch (\Exception $e)
 						{
-							throw new \Qore\Framework\Exception\Installer(
+							throw new Qore\Framework\Exception\Installer(
 								'['.self::name().'] Error installing SQL for Version '.$version.', Table "'.$table.'": '.Qore::EOL.$e->getMessage()
 							);
 						}
