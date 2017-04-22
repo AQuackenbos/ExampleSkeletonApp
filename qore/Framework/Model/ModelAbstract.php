@@ -1,6 +1,7 @@
 <?php 
 
 namespace Qore\Framework\Model;
+use Qore;
 
 abstract class ModelAbstract
 {

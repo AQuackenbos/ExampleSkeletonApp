@@ -1,6 +1,7 @@
 <?php
 
 namespace Qore\Framework\Utility;
+use Qore;
 
 class Installer extends UtilityAbstract
 {
@@ -64,12 +65,12 @@ class Installer extends UtilityAbstract
 					{
 						try
 						{
-							\Qore::connection()->query($query, [\Qore::connection()->addTablePrefix($table)]);
+							Qore::connection()->query($query, [Qore::connection()->addTablePrefix($table)]);
 						}
 						catch (\Exception $e)
 						{
 							throw new \Qore\Framework\Exception\Installer(
-								'['.self::name().'] Error installing SQL for Version '.$version.', Table "'.$table.'": '.\Qore::EOL.$e->getMessage()
+								'['.self::name().'] Error installing SQL for Version '.$version.', Table "'.$table.'": '.Qore::EOL.$e->getMessage()
 							);
 						}
 					}
@@ -82,7 +83,7 @@ class Installer extends UtilityAbstract
 	
 	protected final function _updateVersion()
 	{
-		\Qore::connection()->table('modules')
+		Qore::connection()->table('modules')
 			->onDuplicateKeyUpdate->(['version' => static::$_version])
 			->insert(['name' => static::$_name, 'version' => static::$_version]);
 	}
@@ -92,7 +93,7 @@ class Installer extends UtilityAbstract
 	 */
 	public static function version()
 	{
-		$iv = \Qore::moduleVersion(static::$_name);
+		$iv = Qore::moduleVersion(static::$_name);
 		if($iv === false)
 		{
 			$iv = 0;

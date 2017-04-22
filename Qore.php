@@ -42,7 +42,7 @@ final class Qore
 			} 
 			catch (Exception $e)
 			{
-				throw new \Qore\Framework\Exception\Fatal('Could not connect to configured database.');
+				throw new Qore\Framework\Exception\Fatal('Could not connect to configured database.');
 				exit;
 			}
 		}
@@ -63,7 +63,7 @@ final class Qore
 	{
 		if(self::moduleVersion('Qore_Framework') === 0)
 		{
-			throw new \Qore\Framework\Exception\Fatal('Qore Framework has not been properly installed.');
+			throw new Qore\Framework\Exception\Fatal('Qore Framework has not been properly installed.');
 			exit;
 		}
 		

@@ -21,8 +21,6 @@ require_once '../Qore.php';
 require_once $defaultConfig;
 require_once $configPath;
 
-class_alias('\Qore','Qore');
-
 Qore::setConfig(array_merge($_DEFAULTS,$_CONFIG));
 Qore::setModules(array_merge($_QOREMODULES,$_MODULES));
 

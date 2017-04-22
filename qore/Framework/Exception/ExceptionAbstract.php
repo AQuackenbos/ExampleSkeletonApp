@@ -1,6 +1,7 @@
 <?php 
 
 namespace Qore\Framework\Exception;
+use Qore;
 
 abstract class ExceptionAbstract extends \Exception
 {
@@ -8,7 +9,7 @@ abstract class ExceptionAbstract extends \Exception
 	
 	public function __construct($message, $code = 0, Exception $previous = null)
 	{
-		\Qore::log($message, self::LOG_FILE);
+		Qore::log($message, self::LOG_FILE);
 		return parent::__construct($message, $code, $previous);
 	}
 }

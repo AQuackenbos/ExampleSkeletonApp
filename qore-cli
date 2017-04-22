@@ -4,6 +4,7 @@ if(!(php_sapi_name() === 'cli' || defined('STDIN')))
 	exit;
 }
 
+require 'Qore.php';
  
 echo 'Enter password: ';
 system('stty -echo');
