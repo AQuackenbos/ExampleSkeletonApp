@@ -15,7 +15,7 @@ final class Qore
 	
 	/** Logging Constants **/
 	const EOL						= "\n";
-	const LOG_PATH					= 'logs'
+	const LOG_PATH					= 'logs';
 	const LOG_EXTENSION				= '.log';
 	
 	
