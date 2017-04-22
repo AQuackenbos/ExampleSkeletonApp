@@ -85,6 +85,8 @@ final class Qore
 	public static function loadModules()
 	{
 		$modules = self::$__modules;
+		
+		//Load each modules init and config
 	}
 	
 	public static function install($module)
@@ -142,7 +144,7 @@ final class Qore
 		}
 	}
 	
-	public function response($code)
+	public static function response($code)
 	{
 		http_response_code($code);
 	}
