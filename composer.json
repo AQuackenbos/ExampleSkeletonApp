@@ -3,6 +3,7 @@
     "psr-0" : {"Qore" : "qore/"}
   },
   "require" : {
+    "php": ">=7.0.0",
     "usmanhalalit/pixie": "2.*@dev"
   },
   "require-dev": {
