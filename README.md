@@ -34,45 +34,122 @@ Any amount of modules can be added.  After any modules are added, `qore-cli inst
 
 ## Structure
 
-Modules can contain many pieces to define them.  Only certain pieces are required:
+Modules can contain many pieces to define them.  Only one piece is required:
 
-* Module/**Install.php**: defines the installation routine for the module, even if there isn't one.  Also sets the version and acknowledge name.
-* Module/**Config.php**: defines any routes and configuration elements that the module requires.
+* Module/**config.json**: defines any routes and configuration elements that the module requires.
 
-#### Install.php
+#### config.json
 
-Install.php must extend Qore\Framework\Utility\Installer.  It requires 3 properties as well:
+If this file is not present, the module will not install (and will throw an error).  It should be a single JSON object containing four child objects ("metadata", "configuration", "routes", and "install") that will be parsed by the `qore-cli install` method, and executed as described below by the class `Qore\Framework\Utility\Installer`.
 
-> *****@todo***** Remove deprecated \_\_active property.
+##### Metadata Section
 
-* **__name** defines the internal reference name to this module.  The suggested format is Namespace_Module.
-* **__version** defines the internal version number.  It must be an integer and should increment any time a change is made to the module.
-* **__install** defines the installation routine that will be followed when an install command is run.
+The metadata section should contain information about the module itself.  The only required keys are **name** and **version**.  Everything else is optional, and will appear labeled by its key in the admin area.
 
-The key property here is **__install**.  It has a specific required structure that defines each action that will be taken as part of the module's installation via `qore-cli install`.  See below for an example install array.
-
-```php
-protected static $__install = [
-  1 => [
-    'filesystem' => [
-      'mkdir' => ['module-storage','module-cache'],
-      'touch' => 'special-module-readme.md'
-    ],
-    'database' => [
-      'module_information' => ['CREATE TABLE IF NOT EXISTS ? ( id int(10) auto_increment constraint pk_id primary key )']
-    ],
-    'scripts' => ['extraInstall','requestUserInformation']
-  ]
-]
+###### Example metadata section
+```javascript
+metadata: {
+  name: "Example Qore Module",
+  version: 1,
+  "Author": "Authors Name",
+  "Support URL": "http://mywebsite.com/",
+  "Release Date": "March 14, 2017"
+}
 ```
 
-Each entry under the install array must represent the version of the module that each install routine is for.  The install routines will be run in sequence, or (in the case of a module update) only for uninstalled versions.
+##### Configuration Section
+
+The configuration object represents environmental and setting data for the module.  Both user-configurable and backend-only settings are defined here.  During installation, any user-configurable settings here will use the values defined here as the default, and telling a setting to restore it's default setting will load from this section.
+
+###### Example configuration section
+```javascript
+configuration: {
+  api_url: {
+    configurable: false,
+    value: "https://myapiurl.com/endpoint"
+  },
+  connection_enabled: {
+    configurable: true,
+    value: 0,
+    label: "API Connection Enabled",
+    render: "yesno",
+    required: true
+  },
+  api_username: {
+    configurable: true,
+    label: "API Username",
+    render: "text",
+    validate: "",
+    required: false,
+    depends: ["connection_enabled"]
+  },
+  api_password: {
+    configurable: true,
+    label: "API Password",
+    render: "password",
+    validate: "",
+    required: false,
+    depends: ["connection_enabled"],
+    load: "\Qore\Framework\Utility\Password::decodeConfigurableField",
+    save: "\Qore\Framework\Utility\Password::encodeConfigurableField"
+  },
+  calculated_private_value: {
+    configurable: false,
+    value: "",
+    load: "Model\Config::calculatePrivateValue"
+  }
+}
+```
+
+> *****@todo***** Add readme info about individual configuration options
+
+When using Qore's config method to retrieve this data, all settings will be namespaced using the namespace defined in the metadata section.
+
+If the setting "configurable" is set to false, the only required setting is "value".  If "configurable" is true, both "label" and "render" are required, but "value" is not (and will default to null).
+
+All methods called during any configuration will have no arguments passed to them.
+
+##### Routes Section
+
+Qore uses `c9s/Pux` as it's routing handler.
+
+> *****@todo***** Add documentation for how the routing JSON object should be built.
+
+###### Example routes section
+```javascript
+routes: {
+
+}
+```
+
+##### Installer Section
+
+The install object represents what commands build any additional file or data systems required by the module before proper use.  There is also an ability to add scripts that will run on install.  Installation will always execute in the order: filesystem, database, scripts (for each version).
+
+###### Example installer section
+```javascript
+install: {
+  1: {
+    'filesystem': {
+      'mkdir' => ['module-storage','module-cache'],
+      'touch' => 'special-module-readme.md'
+    },
+    'database' => {
+      'module_information' => 'CREATE TABLE IF NOT EXISTS ? ( id int(10) auto_increment constraint pk_id primary key )'
+    },
+    'scripts' => ['Model\Install::extraInstall','Model\Install::requestUserInformation']
+  }
+}
+```
+
+Each entry under the install object must be keyed for the version of the module that each install routine is for.  The install routines will be run in sequence, or (in the case of a module update) only for uninstalled versions.
 
 * **filesystem** entries are a whitelist of commands that can be run.  All paths are relative to the root directory, which should be the same directory qore-cli is run from.  Allowed commands: mkdir, touch
-* **database** entries are database updates.  Each entry should be keyed by tablename (so the query builder can properly attach any prefixes and events), with an array of queries with a blank binding ("?") for the tablename.
-* **scripts** are additional scripts that will run with the installation.  These should represent method names within the Install class.  Any interaction required from the user should be handled here as well.
+* **database** entries are database updates.  Each entry should be keyed by tablename (so the query builder can properly attach any prefixes and events), with a query or array of queries with a blank binding ("?") for the tablename.
+* **scripts** are additional scripts that will run with the installation.  The format should be a class path with reference to a static method in that class.  If the path is not escaped to the root level (\), it will be parsed relative to the module being installed.  
+
+All methods called during installation will have an instance of the Installer model passed as the only argument.
 
 > *****@todo***** Update install method to properly accept tablename array arguments
 > *****@todo***** Update whitelist of filesystem commands both in code and in readme
-
-### Config.php
+> *****@todo***** Change loader method to JSON
