@@ -1,2 +1,7 @@
+# Private Config Files
+## Not hidden in heroku
+## config.php
+
+# Composer
 vendor/
 .env

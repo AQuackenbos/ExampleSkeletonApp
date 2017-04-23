@@ -1,0 +1,12 @@
+<?php
+if(!(php_sapi_name() === 'cli' || defined('STDIN')))
+{
+	exit;
+}
+
+require 'Qore.php';
+ 
+echo 'Enter password: ';
+system('stty -echo');
+$password = trim(fgets(STDIN));
+system('stty echo');
