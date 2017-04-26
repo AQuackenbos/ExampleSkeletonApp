@@ -5,8 +5,21 @@ if(!(php_sapi_name() === 'cli' || defined('STDIN')))
 }
 
 require 'Qore.php';
- 
+use Qore;
+
+final class QoreCli
+{
+	public function __construct($arguments)
+	{
+		
+	}
+}
+
+new QoreCli($argv);
+
+/**
 echo 'Enter password: ';
 system('stty -echo');
 $password = trim(fgets(STDIN));
 system('stty echo');
+**/
