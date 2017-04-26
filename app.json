@@ -1,5 +1,5 @@
 {
-  "name": "Qore",
-  "description": "A lightweight framework for PHP",
+  "name": "Qore Framework Example Application",
+  "description": "An example application in the Qore Framework, using a custom module.",
   "addons": []
 }
