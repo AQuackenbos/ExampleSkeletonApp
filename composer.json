@@ -1,11 +1,7 @@
 {
-  "autoload" : {
-    "psr-0" : {"Qore" : "qore/"}
-  },
+  "minimum-stability": "dev",
   "require" : {
-    "usmanhalalit/pixie": ">=2.0",
-    "corneltek/pux": "~1.5",
-    "twig/twig": "^2.0"
+	"qore/framework": "dev-master"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"

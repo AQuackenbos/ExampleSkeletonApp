@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "60b537623c7c5c62432c6945941809bc",
+    "content-hash": "a948317e12606c623bad7e1a2af38957",
     "packages": [
         {
             "name": "corneltek/class-template",
@@ -151,16 +151,16 @@
         },
         {
             "name": "corneltek/getoptionkit",
-            "version": "2.5.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/c9s/GetOptionKit.git",
-                "reference": "ded820e487ab1aade804b846712569499956e2ee"
+                "reference": "14ccb4d8bfd2bf59922ace665ce3af1edb370e09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/c9s/GetOptionKit/zipball/ded820e487ab1aade804b846712569499956e2ee",
-                "reference": "ded820e487ab1aade804b846712569499956e2ee",
+                "url": "https://api.github.com/repos/c9s/GetOptionKit/zipball/14ccb4d8bfd2bf59922ace665ce3af1edb370e09",
+                "reference": "14ccb4d8bfd2bf59922ace665ce3af1edb370e09",
                 "shasum": ""
             },
             "require": {
@@ -194,20 +194,20 @@
             ],
             "description": "Powerful command-line option toolkit",
             "homepage": "http://github.com/c9s/GetOptionKit",
-            "time": "2017-02-22T04:51:57+00:00"
+            "time": "2017-04-26 03:43:57"
         },
         {
             "name": "corneltek/pux",
-            "version": "1.6.1",
+            "version": "1.6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/c9s/Pux.git",
-                "reference": "1d4b1ee203340297262d59c525830f76251f4f8f"
+                "reference": "69882d345563cd1a11588b258b75dd6129c357c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/c9s/Pux/zipball/1d4b1ee203340297262d59c525830f76251f4f8f",
-                "reference": "1d4b1ee203340297262d59c525830f76251f4f8f",
+                "url": "https://api.github.com/repos/c9s/Pux/zipball/69882d345563cd1a11588b258b75dd6129c357c9",
+                "reference": "69882d345563cd1a11588b258b75dd6129c357c9",
                 "shasum": ""
             },
             "require": {
@@ -232,11 +232,11 @@
                 }
             ],
             "description": "Fast PHP router",
-            "time": "2015-08-24T11:53:18+00:00"
+            "time": "2016-01-27 07:05:38"
         },
         {
             "name": "corneltek/universal",
-            "version": "1.8.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/corneltek/Universal.git",
@@ -278,20 +278,20 @@
             ],
             "description": "Universal library for PHP",
             "homepage": "http://github.com/corneltek/Universal",
-            "time": "2016-06-11T11:51:45+00:00"
+            "time": "2016-06-11 11:51:45"
         },
         {
             "name": "doctrine/inflector",
-            "version": "v1.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae"
+                "reference": "803a2ed9fea02f9ca47cd45395089fe78769a392"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/90b2128806bfde671b6952ab8bea493942c1fdae",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/803a2ed9fea02f9ca47cd45395089fe78769a392",
+                "reference": "803a2ed9fea02f9ca47cd45395089fe78769a392",
                 "shasum": ""
             },
             "require": {
@@ -345,24 +345,27 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06T14:35:42+00:00"
+            "time": "2016-05-12 17:23:41"
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a"
+                "reference": "93ec38f1df4d4ad3f0c71bc9273139fa8af29f3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a30f7d6e57565a2e1a316e1baf2a483f788b258a",
-                "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/93ec38f1df4d4ad3f0c71bc9273139fa8af29f3e",
+                "reference": "93ec38f1df4d4ad3f0c71bc9273139fa8af29f3e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^3.2"
             },
             "type": "library",
             "extra": {
@@ -391,20 +394,113 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2015-09-11T15:10:35+00:00"
+            "time": "2017-03-24 14:13:45"
         },
         {
-            "name": "symfony/class-loader",
-            "version": "v2.8.19",
+            "name": "qore/admin",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/class-loader.git",
-                "reference": "2c8de07a8a4cc4da9c018ab7a81888b80e762f93"
+                "url": "https://github.com/qoreframework/admin.git",
+                "reference": "f553f04a85c9b31a114adf49f8308300569d153c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/class-loader/zipball/2c8de07a8a4cc4da9c018ab7a81888b80e762f93",
-                "reference": "2c8de07a8a4cc4da9c018ab7a81888b80e762f93",
+                "url": "https://api.github.com/repos/qoreframework/admin/zipball/f553f04a85c9b31a114adf49f8308300569d153c",
+                "reference": "f553f04a85c9b31a114adf49f8308300569d153c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "qore-module",
+            "autoload": {
+                "psr-0": {
+                    "Qore": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Quackenbos",
+                    "email": "a.quackenbos@gmail.com",
+                    "homepage": "http://andrew.quackenbos.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The admin and configuration module for Qore Framework",
+            "keywords": [
+                "admin",
+                "framework",
+                "module",
+                "qore",
+                "qore-framework",
+                "qore-module"
+            ],
+            "time": "2017-04-26 17:07:46"
+        },
+        {
+            "name": "qore/framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qoreframework/framework.git",
+                "reference": "b95a7a478917d19018f42763e159f790ea6971cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qoreframework/framework/zipball/b95a7a478917d19018f42763e159f790ea6971cf",
+                "reference": "b95a7a478917d19018f42763e159f790ea6971cf",
+                "shasum": ""
+            },
+            "require": {
+                "corneltek/pux": "~1.5",
+                "php": ">=7.0",
+                "qore/admin": "dev-master",
+                "twig/twig": "^2.0",
+                "usmanhalalit/pixie": ">=2.0"
+            },
+            "type": "framework",
+            "autoload": {
+                "psr-0": {
+                    "Qore": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Quackenbos",
+                    "email": "a.quackenbos@gmail.com",
+                    "homepage": "http://andrew.quackenbos.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A lightweight framework for PHP 7",
+            "keywords": [
+                "framework",
+                "qore",
+                "qore-framework"
+            ],
+            "time": "2017-04-26 17:05:44"
+        },
+        {
+            "name": "symfony/class-loader",
+            "version": "2.8.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/class-loader.git",
+                "reference": "6789dc86c94c5686d90aa416ef63eb911e73fd26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/class-loader/zipball/6789dc86c94c5686d90aa416ef63eb911e73fd26",
+                "reference": "6789dc86c94c5686d90aa416ef63eb911e73fd26",
                 "shasum": ""
             },
             "require": {
@@ -444,20 +540,20 @@
             ],
             "description": "Symfony ClassLoader Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-18T19:13:35+00:00"
+            "time": "2017-04-12 14:07:15"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.8.19",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "7131327eb95d86d72039fd1216226c28f36fd02a"
+                "reference": "16d55394b31547e4a8494551b85c9b9915545347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/7131327eb95d86d72039fd1216226c28f36fd02a",
-                "reference": "7131327eb95d86d72039fd1216226c28f36fd02a",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/16d55394b31547e4a8494551b85c9b9915545347",
+                "reference": "16d55394b31547e4a8494551b85c9b9915545347",
                 "shasum": ""
             },
             "require": {
@@ -493,11 +589,11 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-20T08:46:40+00:00"
+            "time": "2017-04-12 14:07:15"
         },
         {
             "name": "symfony/polyfill-apcu",
-            "version": "v1.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-apcu.git",
@@ -546,11 +642,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14T01:06:16+00:00"
+            "time": "2016-11-14 01:06:16"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -605,20 +701,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14T01:06:16+00:00"
+            "time": "2016-11-14 01:06:16"
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.2",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "85e8372c451510165c04bf781295f9d922fa524b"
+                "reference": "880856b23335f7328085f9b0409738f71f077af1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/85e8372c451510165c04bf781295f9d922fa524b",
-                "reference": "85e8372c451510165c04bf781295f9d922fa524b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/880856b23335f7328085f9b0409738f71f077af1",
+                "reference": "880856b23335f7328085f9b0409738f71f077af1",
                 "shasum": ""
             },
             "require": {
@@ -668,11 +764,11 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-04-21T00:13:02+00:00"
+            "time": "2017-04-21 00:13:40"
         },
         {
             "name": "usmanhalalit/pixie",
-            "version": "2.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/usmanhalalit/pixie.git",
@@ -724,11 +820,11 @@
                 "sql",
                 "sqlite"
             ],
-            "time": "2016-04-08T10:58:01+00:00"
+            "time": "2016-04-08 10:58:01"
         },
         {
             "name": "usmanhalalit/viocon",
-            "version": "1.0.1",
+            "version": "1.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/usmanhalalit/viocon.git",
@@ -771,13 +867,13 @@
                 "ioc",
                 "test"
             ],
-            "time": "2013-07-13T19:54:56+00:00"
+            "time": "2013-07-13 19:54:56"
         }
     ],
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v121",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
@@ -821,8 +917,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "qore/framework": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
